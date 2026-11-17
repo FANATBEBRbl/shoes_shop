@@ -394,6 +394,7 @@ def create_main_window(user_data):
 def create_product_card(parent, product, user_role='guest'):
     
     stock_quantity = product.get('stock_quantity', 0)
+    stock_label = "Много" if stock_quantity > 5 else "Мало"
     discount = product.get('discount', 0)
     
     if discount > 15:
@@ -593,7 +594,7 @@ def create_product_card(parent, product, user_role='guest'):
 
     label_stock = tk.Label(
         center_frame,
-        text=f"Количество на складе: {stock_quantity}",
+        text=f"Количество на складе: {stock_quantity} ({stock_label})",
         font=("Times New Roman", 10),
         bg=stock_bg_color,
         fg="#000000",
