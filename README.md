@@ -51,6 +51,17 @@ psql -h localhost -p 5432 -U shoe_user -d shoe_store -v ON_ERROR_STOP=1 -f datab
 - `docs/` — документация базы.
 - `tests/` — тесты построения SQL-запросов.
 
+## ER-диаграмма базы данных
+
+[ER-диаграмма PostgreSQL](docs/er-diagram.pdf) показывает таблицы `users`,
+`product`, `pick_up`, `orders` и `orders_items`.
+
+- `orders.user_id` и `orders.pick_up_id` указывают на пользователя и пункт выдачи.
+- `orders_items.order_id` указывает на заказ. Один заказ может содержать несколько позиций.
+- `orders_items.product_id` указывает на товар. Одна модель может встречаться в нескольких позициях заказов.
+
+Первичные и внешние ключи определены в `database/shoe_store.sql`.
+
 ## Автор
 
 Леонов Никита, группа ЩПКО-03-23.
