@@ -7,7 +7,7 @@ def create_main_window(user_data):
     
     main_window = tk.Tk()
     
-    main_window.title("Обувь - Главное окно")
+    main_window.title("ShoeShop — каталог обуви")
     main_window.geometry("1200x800")
     main_window.configure(bg="#FFFFFF")
     
