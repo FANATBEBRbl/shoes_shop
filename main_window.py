@@ -397,7 +397,7 @@ def create_main_window(user_data):
 def create_product_card(parent, product, user_role='guest'):
     
     stock_quantity = product.get('stock_quantity', 0)
-    stock_label = "Много" if stock_quantity > MANY_THRESHOLD else "Мало"
+    stock_label = "Много в наличии" if stock_quantity > MANY_THRESHOLD else "Мало в наличии"
     discount = product.get('discount', 0)
     
     if discount > 15:
