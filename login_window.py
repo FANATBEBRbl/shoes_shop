@@ -87,7 +87,7 @@ def login():
         return 
     
     if not is_valid_login(login):
-        messagebox.showerror("Ошибка", "Неправильный формат email!\nПример: user@example.com")
+        messagebox.showerror("Ошибка", "Введите email в формате user@example.com.")
         return 
     
     user_data = check_user_credentials(login, password)
