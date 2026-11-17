@@ -3,6 +3,9 @@ from tkinter import ttk
 from PIL import Image, ImageTk
 from database import get_all_products, get_products_by_category, calculate_discounted_price, get_filter_options, filter_and_sort_products
 
+MANY_THRESHOLD = 5
+
+
 def create_main_window(user_data):
     
     main_window = tk.Tk()
@@ -394,7 +397,7 @@ def create_main_window(user_data):
 def create_product_card(parent, product, user_role='guest'):
     
     stock_quantity = product.get('stock_quantity', 0)
-    stock_label = "Много" if stock_quantity > 5 else "Мало"
+    stock_label = "Много" if stock_quantity > MANY_THRESHOLD else "Мало"
     discount = product.get('discount', 0)
     
     if discount > 15:
