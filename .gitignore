@@ -4,6 +4,7 @@ __pycache__/
 .coverage
 venv/
 .venv/
+.venv-build/
 env/
 .idea/
 .vscode/

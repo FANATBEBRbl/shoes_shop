@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from PIL import Image, ImageTk
+from paths import resource_path
 from database import get_all_products, get_products_by_category, calculate_discounted_price, get_filter_options, filter_and_sort_products
 
 MANY_THRESHOLD = 5
@@ -47,7 +48,7 @@ def create_main_window(user_data):
     header_frame.pack_propagate(False)
     
     try:
-        header_logo = Image.open("static/Icon.png")
+        header_logo = Image.open(resource_path("static/Icon.png"))
         header_logo = header_logo.resize((60, 60), Image.Resampling.LANCZOS)
         
         header_logo_photo = ImageTk.PhotoImage(header_logo)
@@ -459,17 +460,17 @@ def create_product_card(parent, product, user_role='guest'):
         photo_filename = product.get('photo', '')
         
         if photo_filename:
-            photo_path = f"static/{photo_filename}"
+            photo_path = resource_path(f"static/{photo_filename}")
         else:
-            photo_path = "static/picture.png"
+            photo_path = resource_path("static/picture.png")
         
         try:
             product_image = Image.open(photo_path)
         except:
             try:
-                product_image = Image.open("static/picture.png")
+                product_image = Image.open(resource_path("static/picture.png"))
             except:
-                product_image = Image.open("static/Icon.png")
+                product_image = Image.open(resource_path("static/Icon.png"))
         
         product_image = product_image.resize((200, 170), Image.Resampling.LANCZOS)
         product_photo = ImageTk.PhotoImage(product_image)

@@ -4,6 +4,8 @@ import re
 from PIL import Image, ImageTk 
 from database import check_user_credentials  
 from main_window import create_main_window
+from paths import resource_path
+from database import create_connection
 
 root = tk.Tk()
 
@@ -12,7 +14,7 @@ root.title("Ботинки - Вход")
 root.geometry("600x700")
 root.configure(bg="#FFFFFF")
 
-logo_image = Image.open("static/Icon.png")
+logo_image = Image.open(resource_path("static/Icon.png"))
 logo_image = logo_image.resize((150, 150), Image.Resampling.LANCZOS)
 
 logo_photo = ImageTk.PhotoImage(logo_image)
@@ -107,6 +109,15 @@ def login():
         )
 
 def login_as_guest():
+    connection = create_connection()
+    if connection is None:
+        messagebox.showerror(
+            "База данных недоступна",
+            "Не удалось подключиться к PostgreSQL.\n"
+            "Проверьте запуск базы и параметры config.ini рядом с приложением."
+        )
+        return
+    connection.close()
     guest_user = {
         'id': 0,
         'role': 'guest',

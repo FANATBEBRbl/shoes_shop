@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 from PIL import Image, ImageTk
+from paths import resource_path
 from database import get_all_orders, get_order_by_id, update_order_status, search_orders, delete_order
 from order_editor import create_order_editor
 
@@ -23,7 +24,7 @@ def create_orders_window(user_data):
     header_frame.pack_propagate(False)
     
     try:
-        header_logo = Image.open("static/Icon.png")
+        header_logo = Image.open(resource_path("static/Icon.png"))
         header_logo = header_logo.resize((60, 60), Image.Resampling.LANCZOS)
         header_logo_photo = ImageTk.PhotoImage(header_logo)
         

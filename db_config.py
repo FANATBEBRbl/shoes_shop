@@ -1,9 +1,9 @@
 from configparser import ConfigParser
-from pathlib import Path
+from paths import external_config_path
 
 
 def load_db_config():
-    path = Path(__file__).with_name("config.ini")
+    path = external_config_path()
     config = ConfigParser(interpolation=None)
     if not config.read(path, encoding="utf-8"):
         raise ValueError("Создайте config.ini на основе config.ini.example.")
@@ -15,4 +15,5 @@ def load_db_config():
         "dbname": database["name"],
         "user": database["user"],
         "password": database["password"],
+        "connect_timeout": 3,
     }
