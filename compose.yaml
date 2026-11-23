@@ -8,6 +8,10 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD}
     ports:
       - "127.0.0.1:${POSTGRES_HOST_PORT:-5433}:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - shoe-backend
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
       interval: 5s
@@ -16,6 +20,8 @@ services:
   db-check:
     build: ./docker/db-check
     image: shoe-shop-db-check:1.0
+    networks:
+      - shoe-backend
     environment:
       DB_HOST: db
       DB_PORT: "5432"
@@ -25,3 +31,10 @@ services:
     depends_on:
       db:
         condition: service_healthy
+
+volumes:
+  db_data:
+
+networks:
+  shoe-backend:
+    driver: bridge

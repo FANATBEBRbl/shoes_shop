@@ -12,3 +12,6 @@ dist/
 config.ini
 .env
 *.log
+backups/
+output/
+*.zip
