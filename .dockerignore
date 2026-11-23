@@ -1,0 +1,11 @@
+.git
+.venv
+venv
+**/__pycache__
+*.pyc
+config.ini
+.env
+backups
+build
+dist
+output
